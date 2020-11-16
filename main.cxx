@@ -38,6 +38,7 @@ std::vector<vtkm::Int32> particleTime;
 
 for(int cycle = start; cycle <= end; cycle += interval)
 {
+std::cout << "Cycle: " << cycle << std::endl;
   for(int n = 0; n < num_mpi; n++)
   {
     std::stringstream filename;
@@ -74,7 +75,7 @@ for(int cycle = start; cycle <= end; cycle += interval)
            vtkm::Vec<vtkm::Float64, 3>(pt2[0], pt2[1], pt2[2]));
       shapes.push_back(vtkm::CELL_SHAPE_LINE);
       numIndices.push_back(2);
-      pathlineId.push_back(i);
+      pathlineId.push_back(id_portal.Get(i));
       particleTime.push_back(cycle-interval);
       particleTime.push_back(cycle);
     }
