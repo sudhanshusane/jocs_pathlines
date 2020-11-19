@@ -12,8 +12,18 @@ SET(VTKm_DIR /home/users/ssane/Dev/VIS20_research/Lagrangian_grid_interpolation/
 find_package(VTKm REQUIRED QUIET)
 
 add_executable(PathlineEvaluation main.cxx)
+add_executable(SW4_Evaluation sw4_main.cxx)
+
+################################
 
   target_include_directories(PathlineEvaluation PRIVATE ${VTKm_INCLUDE_DIRS})
   target_link_libraries(PathlineEvaluation PRIVATE vtkm_cont ${VTKm_LIBRARIES} ${VTK_LIBRARIES} ${MPI_LIBRARIES} ${MPI_CXX_LIBRARIES} -fopenmp)
-#  target_compile_definitions(Eulerian_Reconstruct PRIVATE "VTKM_DEVICE_ADAPTER=VTKM_DEVICE_ADAPTER_SERIAL")
   target_compile_options(PathlineEvaluation PRIVATE ${VTKm_COMPILE_OPTIONS})
+
+
+################################
+
+  target_include_directories(SW4_Evaluation PRIVATE ${VTKm_INCLUDE_DIRS})
+  target_link_libraries(SW4_Evaluation PRIVATE vtkm_cont ${VTKm_LIBRARIES} ${VTK_LIBRARIES} ${MPI_LIBRARIES} ${MPI_CXX_LIBRARIES} -fopenmp)
+  target_compile_options(SW4_Evaluation PRIVATE ${VTKm_COMPILE_OPTIONS})
+
